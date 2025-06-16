@@ -1,0 +1,31 @@
+        @if (loader) {
+         <mat-spinner style="z-index: 2; position: absolute; margin: auto; top: 200px;"></mat-spinner>
+        }
+      <mat-card >
+            <mat-card-title style="margin-top: 20px;">Usuario</mat-card-title>
+      <mat-card-content>
+        <form (ngSubmit)="submit()" [formGroup]="form">
+          <p>
+            <mat-form-field >
+              <input type="text" matInput placeholder="Username" formControlName="username">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <input type="password" matInput placeholder="Password" formControlName="password">
+            </mat-form-field>
+          </p>
+            @if (error) {
+            <p class="error">
+            {{error}}
+            </p>
+            }
+
+          <div class="button">
+            <button type="submit" mat-button [disabled]="!form.valid">Crear</button>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>

@@ -1,0 +1,61 @@
+@if (loader) {
+<div>
+  <mat-spinner
+    style="z-index: 2; position: fixed; top: 200px; left: 48%"
+  ></mat-spinner>
+</div>
+} @if (!loader) {
+  <a [routerLink]="['/home']" mat-button style="float: right; right: 40px;">Volver</a>
+<h1 style="text-align: center">Libro</h1>
+<form [formGroup]="miFormulario" (ngSubmit)="onSubmit()" class="form">
+  <mat-form-field>
+    <mat-label>Titulo</mat-label>
+    <input matInput formControlName="titulo" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Precio</mat-label>
+    <input matInput formControlName="precio" />
+  </mat-form-field>
+
+    <mat-form-field>
+    <mat-label>Disponibilidad</mat-label>
+    <input matInput formControlName="disponibilidad" />
+  </mat-form-field>
+
+<mat-form-field>
+  <mat-label>Autor</mat-label>
+  <mat-select formControlName="autor">
+    <mat-option>None</mat-option>
+    @for (item of autor; track item.id) {
+      <mat-option [value]="item.id">{{item.name}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Editorial</mat-label>
+  <mat-select formControlName="editorial">
+    <mat-option>None</mat-option>
+    @for (item of editorial; track item.id) {
+      <mat-option [value]="item.id">{{item.name}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Genero</mat-label>
+  <mat-select formControlName="genero">
+    <mat-option>None</mat-option>
+    @for (item of genero; track item.id) {
+      <mat-option [value]="item.id">{{item.name}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+  <button mat-flat-button [disabled]="!miFormulario.valid">Guardar</button>
+  <button mat-stroked-button style="margin-top: 20px;" type="button" (click)="deleteBook()">Eliminar</button>
+
+</form>
+
+}

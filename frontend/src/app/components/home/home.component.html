@@ -1,0 +1,85 @@
+@if (loader) {
+  <div>
+    <mat-spinner style="z-index: 2; position: fixed; top: 200px; left: 48%;"></mat-spinner>
+  </div>
+}
+<mat-toolbar color="primary">
+  <span
+    ><a routerLink="/home" style="text-decoration: none; color: black"
+      ><img src="cmpc-1.png" style="width: 100px;"/></a
+    ></span
+  >
+  <span class="spacer"></span>
+  <a [routerLink]="['/book-create']" mat-button>Agregar Libro</a>
+   <button (click)="logout()" mat-button>Cerrar sesión</button>
+  </mat-toolbar>
+
+<div class="container-search">
+
+    <mat-form-field class="example-full-width">
+    <mat-label>Buscar por libro</mat-label>
+    <input matInput placeholder="Ej. Harry Potter" [formControl]="searchControl">
+  </mat-form-field>
+
+
+<mat-form-field>
+  <mat-label>Autor</mat-label>
+  <mat-select [(ngModel)]="selectAutor">
+    <mat-option>None</mat-option>
+    @for (item of autor; track item.id) {
+      <mat-option [value]="item.id">{{item.name}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Editorial</mat-label>
+  <mat-select [(ngModel)]="selectEditorial">
+    <mat-option>None</mat-option>
+    @for (item of editorial; track item.id) {
+      <mat-option [value]="item.id">{{item.name}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Genero</mat-label>
+  <mat-select [(ngModel)]="selectGenero">
+    <mat-option>None</mat-option>
+    @for (item of genero; track item.id) {
+      <mat-option [value]="item.id">{{item.name}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+ <button mat-button style="margin-top: 7px;" (click)="handleFilter()">Filtrar</button>
+</div>
+
+
+<div class="container-grid">
+  <div class="wrapper">
+    @for (item of books; track item.id) {
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{item.titulo}}</mat-card-title>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="https://res.cloudinary.com/dm8cwfkfw/image/upload/v1747349200/debby_hudson_E_Rb_JX_Vw_Afo_unsplash_8222fdb25f.jpg"
+        alt="Photo of a Shiba Inu"
+      />
+      <mat-card-content>
+        <p>Precio: {{item.precio}} </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button [routerLink]="['/detail', item.id]">Ver detalle</button>
+      </mat-card-actions>
+    </mat-card>
+    }
+  </div>
+</div>
+
+
+<mat-paginator [length]="total" [pageSizeOptions]="[4]" aria-label="Select page" style="margin-top: 20px;" (page)="handlePageEvent($event)">
+</mat-paginator>
+
