@@ -8,10 +8,10 @@ Las variables de entorno estan alojadas en el archivo .env de la raiz del proyec
 
 ## Tecnologías Utilizadas
 
-- Nestjs: 11
-- Angular: 19
-- Node: 20.18.0
-- TypeScript: 5.7.2
+- Nestjs: v11
+- Angular: v19
+- Node: v20.18.0
+- TypeScript: v5.7.2
 
 ## Funcionalidades
 
